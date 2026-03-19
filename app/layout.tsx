@@ -19,6 +19,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Calculator",
   description: "Smoth calculations",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default'
+  }
 };
 
 export default function RootLayout({
