@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+.section input:focus{
+  outline: None;
+  border: 4px dotted green;
+}
