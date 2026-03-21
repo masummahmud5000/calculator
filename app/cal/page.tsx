@@ -1,5 +1,5 @@
 'use client'
-
+// import {alertSound} from '@/public/dan'
 import { useRef, useState } from "react";
 
 const Cal = () => {
@@ -22,7 +22,13 @@ const Cal = () => {
     const [layer2,setLayer2] = useState<boolean>(false)
 
     const [Error,setError] = useState<boolean>(false);
+
+    const audioRef = useRef<HTMLAudioElement>(null)
+    // const [playing,setPlaying] = useState<boolean>(false)
     
+    const dangerSoundControl = () => {
+        audioRef.current?.play();
+    }
     const addValue = (num: string) => {
         // const regEx = /^[^.]*\.[^.]*$/;
         if (layer2){
@@ -215,6 +221,7 @@ const Cal = () => {
         if (result === '' || result === 'NaN' || result === '0.00'){
             setError(true)
             setTimeout(()=> setError(false), 3000)
+            dangerSoundControl()
         }else{
             setInput1(result)
             setResult('0.00')
@@ -229,6 +236,7 @@ const Cal = () => {
         if (resultL2 === '' || resultL2 === 'NaN' || resultL2 === '0.00'){
             setError(true)
             setTimeout(()=> setError(false), 3000)
+            dangerSoundControl()
         }else{
             setInput2(resultL2)
             setResult('0.00')
@@ -279,6 +287,7 @@ const Cal = () => {
     ///////////////////////////////////////////
     return(
         <main className="px-3 py-3">
+            <audio ref={audioRef} src='/dangerSound.mp3'/>
             {layer2 && <h1 className="text-center font-mono font-bold text-3xl">Layer 2</h1>}
             {
                 layer2 ? 
