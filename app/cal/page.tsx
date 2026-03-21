@@ -24,8 +24,11 @@ const Cal = () => {
     const [Error,setError] = useState<boolean>(false);
 
     const audioRef = useRef<HTMLAudioElement>(null)
+    const faaaAudio = useRef<HTMLAudioElement>(null)
     // const [playing,setPlaying] = useState<boolean>(false)
-    
+    const faaa = () => {
+        faaaAudio.current?.play();
+    }
     const dangerSoundControl = () => {
         audioRef.current?.play();
     }
@@ -70,6 +73,7 @@ const Cal = () => {
             setInput2L2('')
             setResultL2('0.00')
             setStatus('')
+            faaa()
         }else{
             setLeft(true)
             setRight(false)
@@ -78,6 +82,7 @@ const Cal = () => {
             setInput2('')
             setResult('0.00')
             setStatus('')
+            faaa()
         }
 
     }
@@ -224,6 +229,7 @@ const Cal = () => {
             dangerSoundControl()
         }else{
             setInput1(result)
+            setActive(2)
             setResult('0.00')
             setInput2('')
             setLeft(false)
@@ -269,25 +275,11 @@ const Cal = () => {
 
         }
     }
-    const layerAddHandle = () => {
-        setLayer2(true)
-        if (activeL2 === 0){
-            setLeft(true)
-            setActive(1)
-        }else if (activeL2 === 1){
-            setLeft(true)
-            setRight(false)
-            setActive(1)
-        }else if (activeL2 === 2){
-            setRight(true)
-            setLeft(false)
-            setActive(2)
-        }
-    }
     ///////////////////////////////////////////
     return(
         <main className="px-3 py-3">
             <audio ref={audioRef} src='/dangerSound.mp3'/>
+            <audio ref={faaaAudio} src='/fahhh.mp3'/>
             {layer2 && <h1 className="text-center font-mono font-bold text-3xl">Layer 2</h1>}
             {
                 layer2 ? 
