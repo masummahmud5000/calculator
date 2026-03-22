@@ -5,6 +5,10 @@ import logo from '@/public/calculator.png'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import "./globals.css";
 
+
+import Script from "next/script";
+
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -45,6 +49,8 @@ export default function RootLayout({
         </nav>
 
         {children}
+
+        <Script src="https://pl28960388.profitablecpmratenetwork.com/d1/af/74/d1af7439c1bb6333dfe4a6da680a06fd.js" strategy="afterInteractive"></Script>
         
       </body>
     </html>
