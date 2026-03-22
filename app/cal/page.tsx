@@ -383,7 +383,7 @@ const Cal = () => {
                 <span className="bg-green-500 hover:bg-green-600 px-3 ml-5 rounded-md cursor-pointer" onClick={nameControl}>Set Name</span>
             </div>}
 
-            {layer2 && <h1 className="text-center font-mono font-bold text-3xl">Layer 2</h1>}
+            {layer2 && <h1 className="text-center font-mono font-bold text-3xl mt-3">Layer 2</h1>}
             {
                 layer2 ? 
                     <div className="section flex bg-blue-200 text-black rounded-xl py-2 px-3 justify-center mt-3">
@@ -398,6 +398,13 @@ const Cal = () => {
                     <h1 className="text-3xl ml-3 mr-3">{status}</h1>
 
                     {allShow && <input value={input2} onFocus={rightFocus} type="text" placeholder="input 2" required className="text-center text-xl w-35 py-1 rounded-xl font-bold" readOnly/>}
+                </div>
+            }
+            {
+                !allShow && <div className="flex flex-col mt-20 bg-red-700 text-white items-center py-5 gap-5 px-5 rounded-2xl border-3 border-black">
+                    <h1 className="fa fa-warning text-center text-5xl bg-white py-3 pl-5 pr-17 text-red-600 rounded-full"></h1>
+                    <h1 className='text-2xl font-sans text-center'>নাম না সেট করলে, আপনি এই অ্যাপটি ব্যাবহার করতে পারবেন না!</h1>
+                    <h1 className="bg-blue-500 py-1 px-3 rounded-xl">Masum Software Lab</h1>
                 </div>
             }
             

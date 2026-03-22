@@ -7,7 +7,7 @@ export default function Home() {
   let router = useRouter()
 
   useEffect(()=>{
-    setTimeout(()=> router.push('/cal'),3000)
+    setTimeout(()=> router.push('/cal'),2500)
   },[])
   
   return (
