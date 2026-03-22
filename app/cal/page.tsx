@@ -383,7 +383,7 @@ const Cal = () => {
                 <span className="bg-green-500 hover:bg-green-600 px-3 ml-5 rounded-md cursor-pointer" onClick={nameControl}>Set Name</span>
             </div>}
 
-            {layer2 && <h1 className="text-center font-mono font-bold text-3xl mt-3">Layer 2</h1>}
+            {layer2 && <h1 className="text-center font-mono font-bold text-3xl mt-5">Layer 2</h1>}
             {
                 layer2 ? 
                     <div className="section flex bg-blue-200 text-black rounded-xl py-2 px-3 justify-center mt-3">
