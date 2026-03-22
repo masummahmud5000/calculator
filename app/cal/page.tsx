@@ -1,8 +1,16 @@
 'use client'
 // import {alertSound} from '@/public/dan'
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Cal = () => {
+    let router = useRouter()
+
+    const [allShow,setAllShow] = useState<boolean>(false)
+    const [user,setUser] = useState<string>('')
+    const [userName,setUserName] = useState<string>('')
+    const [addStatus,setAddStatus] = useState<boolean>(false)
+    const [nameBox,setNameBox] = useState<boolean>(false)
 
     const [status,setStatus] = useState<string>('');
     const [result,setResult] = useState<string>('0.00');
@@ -25,12 +33,39 @@ const Cal = () => {
 
     const audioRef = useRef<HTMLAudioElement>(null)
     const faaaAudio = useRef<HTMLAudioElement>(null)
+    const misMatch = useRef<HTMLAudioElement>(null)
+    // const [playing,setPlaying] = useState<boolean>(false)
+    useEffect(() => {
+        const userName = localStorage.getItem('name')
+        if (userName){
+            setUser(userName)
+            setAddStatus(false)
+            setAllShow(true)
+        }else{
+            setUser('Name Not Found')
+            setAddStatus(true)
+            setAllShow(false)
+        }
+        if (active === 0){
+            setActive(1)
+            setLeft(true)
+            setRight(false)
+        }
+        if (activeL2 === 0){
+            setActiveL2(1)
+            setLeft(true)
+            setRight(false)
+        }
+    },[])
     // const [playing,setPlaying] = useState<boolean>(false)
     const faaa = () => {
         faaaAudio.current?.play();
     }
     const dangerSoundControl = () => {
         audioRef.current?.play();
+    }
+    const mismatch = () => {
+        misMatch.current?.play();
     }
     const addValue = (num: string) => {
         // const regEx = /^[^.]*\.[^.]*$/;
@@ -108,68 +143,114 @@ const Cal = () => {
     }
     ///////////////////////////////////////////
     const addition = () => {
+
         if (layer2){
-            let value1 = parseFloat(input1L2)
-            let value2 = parseFloat(input2L2)
-            let calculate = value1 + value2
-            setStatus('+')
-            setResultL2(String(calculate.toFixed(2)))
+            if (input1L2 === '' || input2L2 === ''){
+                mismatch()
+            }else{
+                let value1 = parseFloat(input1L2)
+                let value2 = parseFloat(input2L2)
+                let calculate = value1 + value2
+                setStatus('+')
+                setResultL2(String(calculate.toFixed(2)))
+            }
         }else{
-            let value1 = parseFloat(input1)
-            let value2 = parseFloat(input2)
-            let calculate = value1 + value2
-            setStatus('+')
-            setResult(String(calculate.toFixed(2)))
+            if (input1 === '' || input2 === ''){
+                mismatch()
+            }else{
+                let value1 = parseFloat(input1)
+                let value2 = parseFloat(input2)
+                let calculate = value1 + value2
+                setStatus('+')
+                setResult(String(calculate.toFixed(2)))
+            }
+        }
+
+        if (result === 'NaN' || result === '' || resultL2 === 'NaN' || resultL2 === ''){
+            mismatch()
         }
     }
     ///////////////////////////////////////////
     ///////////////////////////////////////////
     const subtraction = () => {
         if (layer2){
-            let value1 = parseFloat(input1L2)
-            let value2 = parseFloat(input2L2)
-            let calculate = value1 - value2
-            setStatus('-')
-            setResultL2(String(calculate.toFixed(2)))
+            if (input1L2 === '' || input2L2 === ''){
+                mismatch()
+            }else{
+                let value1 = parseFloat(input1L2)
+                let value2 = parseFloat(input2L2)
+                let calculate = value1 - value2
+                setStatus('-')
+                setResultL2(String(calculate.toFixed(2)))
+            }
         }else{
-            let value1 = parseFloat(input1)
-            let value2 = parseFloat(input2)
-            let calculate = value1 - value2
-            setStatus('-')
-            setResult(String(calculate.toFixed(2)))
+            if (input1 === '' || input2 === ''){
+                mismatch()
+            }else{
+                let value1 = parseFloat(input1)
+                let value2 = parseFloat(input2)
+                let calculate = value1 - value2
+                setStatus('-')
+                setResult(String(calculate.toFixed(2)))
+            }
+        }
+        if (result === 'NaN' || result === '' || resultL2 === 'NaN' || resultL2 === ''){
+            mismatch()
         }
         
     }
     //////////////////////////////////////////
     const multi = () => {
         if (layer2){
-            let value1 = parseFloat(input1L2)
-            let value2 = parseFloat(input2L2)
-            let calculate = value1 * value2
-            setStatus('x')
-            setResultL2(String(calculate.toFixed(2)))
+            if (input1L2 === '' || input2L2 === ''){
+                mismatch()
+            }else{
+                let value1 = parseFloat(input1L2)
+                let value2 = parseFloat(input2L2)
+                let calculate = value1 * value2
+                setStatus('x')
+                setResultL2(String(calculate.toFixed(2)))
+            }
         }else{
-            let value1 = parseFloat(input1)
-            let value2 = parseFloat(input2)
-            let calculate = value1 * value2
-            setStatus('x')
-            setResult(String(calculate.toFixed(2)))
+            if (input1 === '' || input2 === ''){
+                mismatch()
+            }else{
+                let value1 = parseFloat(input1)
+                let value2 = parseFloat(input2)
+                let calculate = value1 * value2
+                setStatus('x')
+                setResult(String(calculate.toFixed(2)))
+            }
+        }
+        if (result === 'NaN' || result === '' || resultL2 === 'NaN' || resultL2 === ''){
+            mismatch()
         }
     }
     ///////////////////////////////////////////
     const divition = () => {
         if (layer2){
-            let value1 = parseFloat(input1L2)
-            let value2 = parseFloat(input2L2)
-            let calculate = value1 / value2
-            setStatus('÷')
-            setResultL2(String(calculate.toFixed(2)))
+            if (input1L2 === '' || input2L2 === ''){
+                mismatch()
+            }else{
+                let value1 = parseFloat(input1L2)
+                let value2 = parseFloat(input2L2)
+                let calculate = value1 / value2
+                setStatus('÷')
+                setResultL2(String(calculate.toFixed(2)))
+            }
         }else{
-            let value1 = parseFloat(input1)
-            let value2 = parseFloat(input2)
-            let calculate = value1 / value2
-            setStatus('÷')
-            setResult(String(calculate.toFixed(2)))
+            if (input1 === '' || input2 === ''){
+                mismatch()
+            }else{
+                let value1 = parseFloat(input1)
+                let value2 = parseFloat(input2)
+                let calculate = value1 / value2
+                setStatus('÷')
+                setResult(String(calculate.toFixed(2)))
+            }
+        }
+        if (result === 'NaN' || result === '' || resultL2 === 'NaN' || resultL2 === ''){
+            mismatch()
         }
     }
     ///////////////////////////////////////////
@@ -275,11 +356,33 @@ const Cal = () => {
 
         }
     }
-    ///////////////////////////////////////////
+    //////////////////////////////////////////
+    const nameControl = () => {
+        localStorage?.setItem('name', userName)
+        setNameBox(false)
+        router.push('/')
+    }
+    //////////////////////////////////////////
+    const remoteControl = () => {
+        localStorage?.removeItem('name')
+        router.push('/')
+    }
+    /////////////////////////////////////////////////////////////////////////////////
+    
+    /////////////////////////////////////////////////////////////////////////////////
     return(
-        <main className="px-3 py-3">
+        <main className="select-none px-3 py-3">
             <audio ref={audioRef} src='/dangerSound.mp3'/>
             <audio ref={faaaAudio} src='/fahhh.mp3'/>
+            <audio ref={misMatch} src='/mismatch.mp3'/> 
+
+            <h1 className="inline py-1 px-3 rounded-xl bg-amber-200 font-mono">User : <span className="text-blue-800">{user}</span>{addStatus ? <span className="bg-green-500 ml-5 text-white px-2 hover:bg-green-600 rounded-md cursor-pointer" onClick={() => setNameBox(!nameBox)}>Add Name</span> : <span className="bg-red-500 px-2 text-white rounded-lg ml-5 cursor-pointer" onClick={remoteControl}>Remove Name</span>}</h1>
+
+            {nameBox && <div className="bg-amber-800 inline-block mt-5 py-1 px-3 rounded-lg text-white">
+                <input className="nameinput" onChange={(e) => setUserName(e.target.value)} type="text" placeholder="Enter Your Name" required/>
+                <span className="bg-green-500 hover:bg-green-600 px-3 ml-5 rounded-md cursor-pointer" onClick={nameControl}>Set Name</span>
+            </div>}
+
             {layer2 && <h1 className="text-center font-mono font-bold text-3xl">Layer 2</h1>}
             {
                 layer2 ? 
@@ -289,16 +392,16 @@ const Cal = () => {
                     <h1 className="text-3xl ml-3 mr-3">{status}</h1>
 
                     <input value={input2L2} onFocus={rightFocus} type="text" placeholder="input 2" required className="text-center text-xl w-35 py-1 rounded-xl font-bold" readOnly/>
-                </div> : <div className="section flex bg-blue-200 text-black rounded-xl py-2 px-3 justify-center mt-12">
-                    <input value={input1} onFocus={leftFocus} type="text" placeholder="input 1" required className="text-center text-xl w-35 py-1 rounded-xl font-bold" readOnly/>
+                </div> : <div className="section flex bg-blue-200 text-black rounded-xl py-2 px-3 justify-center mt-8">
+                    {allShow && <input value={input1} onFocus={leftFocus} type="text" placeholder="input 1" required className="text-center text-xl w-35 py-1 rounded-xl font-bold" readOnly/>}
 
                     <h1 className="text-3xl ml-3 mr-3">{status}</h1>
 
-                    <input value={input2} onFocus={rightFocus} type="text" placeholder="input 2" required className="text-center text-xl w-35 py-1 rounded-xl font-bold" readOnly/>
+                    {allShow && <input value={input2} onFocus={rightFocus} type="text" placeholder="input 2" required className="text-center text-xl w-35 py-1 rounded-xl font-bold" readOnly/>}
                 </div>
             }
             
-            <div>
+            {allShow && <div>
                 <h1 className="text-center text-2xl mt-3 font-bold">
                     {
                         layer2 ? <span className={Error ? "font-bold text-white bg-red-500 py-1 px-3 rounded-xl ml-2 animate-[pulse_300ms_infinite]" : "font-bold text-white bg-amber-800 py-1 px-3 rounded-xl ml-2"}>{resultL2}</span> : 
@@ -315,15 +418,15 @@ const Cal = () => {
                 </p> : <p className="fa fa-add ml-7 bg-blue-600 py-1 pl-2 pr-7 rounded-lg text-white border-2 cursor-pointer hover:bg-blue-700 border-amber-500" onClick={layer2Init}></p>}
                 </h1>
 
-            </div>
+            </div>}
             {/* //////////////////////////////////////////////////// */}
-            <div className="flex mt-15 items-center justify-center gap-20 pb-5">
+            {allShow && <div className="flex mt-15 items-center justify-center gap-20 pb-5">
                 <h1 className={left ? "fa fa-arrow-left bg-green-500 text-3xl py-1 rounded-lg pl-3 pr-12 text-white border-2 border-red-800 opacity-30": "fa fa-arrow-left bg-green-500 text-3xl py-1 rounded-lg pl-3 pr-12 text-white border-2 border-red-800"} onClick={leftHandle}></h1>
                 
                 <h1 className={right ? "fa fa-arrow-right bg-green-500 text-3xl py-1 rounded-lg pl-3 pr-12 text-white border-2 border-red-800 opacity-30" : "fa fa-arrow-right bg-green-500 text-3xl py-1 rounded-lg pl-3 pr-12 text-white border-2 border-red-800"} onClick={rightHandle}></h1>
                 
-            </div>
-            <div className="grid grid-cols-4 gap-5 bg-emerald-800 py-8 px-5 bottom-0 right-0 rounded-xl border-3 border-fuchsia-700">
+            </div>}
+            {allShow && <div className="grid grid-cols-4 gap-5 bg-emerald-800 py-8 px-5 bottom-0 right-0 rounded-xl border-3 border-fuchsia-700">
                 <span className="text-3xl font-mono font-bold bg-amber-400 py-3 px-5 text-center rounded-full text-white hover:bg-amber-500 cursor-pointer transition-all duration-150" onClick={()=> addValue('1')}>1</span>
 
                 <span className="text-3xl font-mono font-bold bg-amber-400 py-3 px-5 text-center rounded-full text-white hover:bg-amber-500 cursor-pointer transition-all duration-150" onClick={()=> addValue('2')}>2</span>
@@ -356,7 +459,7 @@ const Cal = () => {
 
                 <span className="text-3xl font-mono font-bold bg-blue-400 py-3 px-5 text-center rounded-full text-white hover:bg-blue-500 cursor-pointer transition-all duration-150" onClick={divition}>÷</span>
         
-            </div>
+            </div>}
             {/* //////////////////////////////////////////////////// */}
         </main>
     )

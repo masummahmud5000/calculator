@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Image from "next/image";
 import logo from '@/public/calculator.png'
-
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import "./globals.css";
 
@@ -34,13 +33,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <nav className="flex items-center text-center gap-5 bg-green-600 py-4 px-8 border-b-5 border-black">
+        <nav className="flex items-center text-center gap-8 bg-green-600 py-4 pl-7 pr-3 border-b-5 border-black">
+
           <Image src={logo} height={40} alt="Logo-Image" className="bg-white rounded-full p-1 animate-[spin_4s_infinite]"></Image>
+
           <h1 className="text-2xl font-bold text-white">Calculator</h1>
-          <p className="text-center font-bold font-mono text-sm text-amber-300">Masum Software Lab</p>
+
+          <p className="flex items-center justify-center gap-1 text-center px-2 py-1 rounded-xl text-[11px] text-black bg-white border">মাসুম সফটওয়্যার ল্যাব<span className="fa fa-check-circle text-green-700"></span></p>
         </nav>
 
         {children}

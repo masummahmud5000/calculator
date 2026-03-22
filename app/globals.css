@@ -2,5 +2,9 @@
 
 .section input:focus{
   outline: None;
-  border: 4px dotted green;
+  border-bottom: 4px dotted green;
+}
+.nameinput:focus{
+  outline: None;
+  /* border: 4px dotted green; */
 }
