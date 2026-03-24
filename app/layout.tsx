@@ -50,7 +50,7 @@ export default function RootLayout({
 
         {children}
 
-        <Script src="https://pl28960388.profitablecpmratenetwork.com/d1/af/74/d1af7439c1bb6333dfe4a6da680a06fd.js" strategy="afterInteractive"></Script>
+        <Script src="https://www.profitablecpmratenetwork.com/e0kctwmi?key=ff02ca0aff24b3af825f03bd38b0fbb6" strategy="afterInteractive"></Script>
         
       </body>
     </html>
